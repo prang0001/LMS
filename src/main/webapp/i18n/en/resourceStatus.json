@@ -1,0 +1,23 @@
+
+{
+    "lmsApp": {
+        "resourceStatus" : {
+            "home": {
+                "title": "Resource Statuses",
+                "createLabel": "Create a new Resource Status",
+                "createOrEditLabel": "Create or edit a Resource Status"
+            },
+            "created": "A new Resource Status is created with identifier {{ param }}",
+            "updated": "A Resource Status is updated with identifier {{ param }}",
+            "deleted": "A Resource Status is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Resource Status {{ id }}?"
+            },
+            "detail": {
+                "title": "Resource Status"
+            },
+            "statusName": "Status Name",
+            "libraryResource": "Library Resource"
+        }
+    }
+}

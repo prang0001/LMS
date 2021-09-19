@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-library-resource-heading" jhiTranslate="lmsApp.libraryResource.home.createOrEditLabel">Create or edit a Library Resource</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!libraryResource.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="libraryResource.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.libraryResource.resourceTitle" for="field_resourceTitle">Resource Title</label>
+                    <input type="text" class="form-control" name="resourceTitle" id="field_resourceTitle"
+                        [(ngModel)]="libraryResource.resourceTitle" required/>
+                    <div [hidden]="!(editForm.controls.resourceTitle?.dirty && editForm.controls.resourceTitle?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.resourceTitle?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.libraryResource.resourceDescription" for="field_resourceDescription">Resource Description</label>
+                    <input type="text" class="form-control" name="resourceDescription" id="field_resourceDescription"
+                        [(ngModel)]="libraryResource.resourceDescription" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.libraryResource.callNumber" for="field_callNumber">Call Number</label>
+                    <input type="text" class="form-control" name="callNumber" id="field_callNumber"
+                        [(ngModel)]="libraryResource.callNumber" required/>
+                    <div [hidden]="!(editForm.controls.callNumber?.dirty && editForm.controls.callNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.callNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.libraryResource.author" for="field_author">Author</label>
+                    <select class="form-control" id="field_author" name="author" [(ngModel)]="libraryResource.author" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="authorOption.id === libraryResource.author?.id ? libraryResource.author : authorOption" *ngFor="let authorOption of authors; trackBy: trackAuthorById">{{authorOption.authorName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.libraryResource.subject" for="field_subject">Subject</label>
+                    <select class="form-control" id="field_subject" name="subject" [(ngModel)]="libraryResource.subject" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="subjectOption.id === libraryResource.subject?.id ? libraryResource.subject : subjectOption" *ngFor="let subjectOption of subjects; trackBy: trackSubjectById">{{subjectOption.subjectName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.libraryResource.resourceStatus" for="field_resourceStatus">Resource Status</label>
+                    <select class="form-control" id="field_resourceStatus" name="resourceStatus" [(ngModel)]="libraryResource.resourceStatus" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="resourceStatusOption.id === libraryResource.resourceStatus?.id ? libraryResource.resourceStatus : resourceStatusOption" *ngFor="let resourceStatusOption of resourcestatuses; trackBy: trackResourceStatusById">{{resourceStatusOption.statusName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.libraryResource.resourceType" for="field_resourceType">Resource Type</label>
+                    <select class="form-control" id="field_resourceType" name="resourceType" [(ngModel)]="libraryResource.resourceType" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="resourceTypeOption.id === libraryResource.resourceType?.id ? libraryResource.resourceType : resourceTypeOption" *ngFor="let resourceTypeOption of resourcetypes; trackBy: trackResourceTypeById">{{resourceTypeOption.resourceTypeName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

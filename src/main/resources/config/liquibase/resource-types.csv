@@ -1,0 +1,6 @@
+id;resource_type_name;rental_duration;overdue_charge
+1;Book;21;.50
+2;Motion Picture;7;.50
+3;e-Book;21;.50
+4;Periodical;7;.50
+5;Sound Recording;7;.50

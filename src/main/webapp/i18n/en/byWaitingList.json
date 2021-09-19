@@ -1,0 +1,40 @@
+
+{
+    "lmsApp": {
+        "byWaitingList" : {
+            "home": {
+                "title": "Waiting Lists",
+                "createLabel": "Create a new Waiting List",
+                "createOrEditLabel": "Create or edit a Waiting List",
+                "libraryResource": "Library Resource",
+                "patron": "Patron"
+            },
+            "created": "A new Waiting List is created with identifier {{ param }}",
+            "updated": "A Waiting List is updated with identifier {{ param }}",
+            "deleted": "A Waiting List is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Waiting List {{ id }}?"
+            },
+            "detail": {
+                "title": "Waiting List"
+            },
+            "dateRequest": "Date Request",
+            "requested": "Requested",
+            "libraryResource": "Library Resource",
+            "patron": "Patron",
+            "resourceTypeName": "Resource Type Name",
+            "rentalDuration": "Rental Duration",
+            "overdueCharge": "Overdue Charge",
+            "resourceId": "Resource ID",
+            "resourceType": "Resource Type",
+            "resourceTitle": "Resource Title",
+            "resourceDescription": "Resource Description",
+            "callNumber": "Call Number",
+            "resourceAuthorId": "Resource Author ID",
+            "resourceSubjectId": "Resource Subject ID",
+            "authorName": "Author Name",
+            "subjectName": "Subject Name",
+            "status": "Status"
+        }
+    }
+}

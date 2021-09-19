@@ -1,0 +1,8 @@
+id;resource_title;resource_description;call_number;author_id;subject_id;resource_status_id;resource_type_id
+1;Fahrenheit 451;A future America where books are outlawed;201;1;1;1;1
+2;Inferno;Robert Langdon must solve another puzzle based on Dante's Inferno;202;2;1;1;3
+3;Emperor's New Clothes;A journey of how an Emperor learns about ruling;101;3;2;1;1	
+4;Jack And The Beanstalk; Fe-Fi-Fo-Fum, how does a poor boy save the day;111;4;2;1;1
+5;Cinderella;A girl with her glass slipper finds her happy ending;301;5;2;1;1
+6;Little Red Riding Hood;A girl with her red hood saves the day;302;5;2;1;1
+7;Cinderella;A girl with her glass slipper finds her happy ending;401;5;6;1;2

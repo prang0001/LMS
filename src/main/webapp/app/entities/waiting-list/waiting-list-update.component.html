@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-waiting-list-heading" jhiTranslate="lmsApp.waitingList.home.createOrEditLabel">Create or edit a Waiting List</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!waitingList.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="waitingList.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.waitingList.dateRequest" for="field_dateRequest">Date Request</label>
+                    <div class="input-group">
+                        <input id="field_dateRequest" type="text" class="form-control" name="dateRequest" ngbDatepicker  #dateRequestDp="ngbDatepicker" [(ngModel)]="waitingList.dateRequest"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateRequestDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.waitingList.requested" for="field_requested">Requested</label>
+                    <input type="checkbox" class="form-control" name="requested" id="field_requested"
+                        [(ngModel)]="waitingList.requested" />
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="lmsApp.waitingList.libraryResource" for="field_libraryResource">Library Resource</label>
+                    <select class="form-control" id="field_libraryResource" multiple name="libraryResource" [(ngModel)]="waitingList.libraryResources">
+                        <option [ngValue]="getSelected(waitingList.libraryResources, libraryResourceOption)" *ngFor="let libraryResourceOption of libraryresources; trackBy: trackLibraryResourceById">{{libraryResourceOption.resourceTitle}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="lmsApp.waitingList.patron" for="field_patron">Patron</label>
+                    <select class="form-control" id="field_patron" multiple name="patron" [(ngModel)]="waitingList.patrons">
+                        <option [ngValue]="getSelected(waitingList.patrons, patronOption)" *ngFor="let patronOption of patrons; trackBy: trackPatronById">{{patronOption.login}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

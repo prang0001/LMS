@@ -1,0 +1,50 @@
+<div>
+    <h2><span jhiTranslate="lmsApp.byRentalTransaction.home.title">Library Resources By Rentals</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="byRentalTransactions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span jhiTranslate="lmsApp.byRentalTransaction.patron">Patron</span></th>
+                <th jhiSortBy="rentalStartDate"><span jhiTranslate="lmsApp.byRentalTransaction.rentalStartDate">Rental Start Date</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="rentalDueDate"><span jhiTranslate="lmsApp.byRentalTransaction.rentalDueDate">Rental Due Date</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="overdue"><span jhiTranslate="lmsApp.byRentalTransaction.overdue">Overdue</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let byRentalTransaction of byRentalTransactions ;trackBy: trackId">
+                <td><a [routerLink]="['/by-rental-transaction', byRentalTransaction.id, 'view' ]">{{byRentalTransaction.id}}</a></td>
+                <td>
+                     <span *ngFor="let Patron of byRentalTransaction.patrons;trackBy: trackId">
+                        <a [routerLink]="['/patron', Patron?.id, 'view' ]" >{{Patron?.login}}</a>
+                     </span>
+                </td>
+                <td>{{byRentalTransaction.rentalStartDate}}</td>
+                <td>{{byRentalTransaction.rentalDueDate}}</td>
+                <td>{{byRentalTransaction.overdue}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/by-rental-transaction', byRentalTransaction.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <br/>
+            <br/>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+        </table>
+    </div>
+</div>

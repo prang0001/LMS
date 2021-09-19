@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="waitingList">
+            <h2><span jhiTranslate="lmsApp.waitingList.detail.title">Waiting List</span> {{waitingList.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lmsApp.waitingList.dateRequest">Date Request</span></dt>
+                <dd>
+                    <span>{{waitingList.dateRequest}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.waitingList.requested">Requested</span></dt>
+                <dd>
+                    <span>{{waitingList.requested}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.waitingList.libraryResource">Library Resource</span></dt>
+                <dd>
+                    <span *ngFor="let libraryResource of waitingList.libraryResources; let last = last">
+                        <a [routerLink]="['/library-resource', libraryResource?.id, 'view' ]">{{libraryResource.resourceTitle}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.waitingList.patron">Patron</span></dt>
+                <dd>
+                    <span *ngFor="let patron of waitingList.patrons; let last = last">
+                        <a [routerLink]="['/patron', patron?.id, 'view' ]">{{patron.login}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/waiting-list', waitingList.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

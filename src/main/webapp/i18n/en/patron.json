@@ -1,0 +1,34 @@
+
+{
+    "lmsApp": {
+        "patron" : {
+            "home": {
+                "title": "Patrons",
+                "createLabel": "Create a new Patron",
+                "createOrEditLabel": "Create or edit a Patron"
+            },
+            "created": "A new Patron is created with identifier {{ param }}",
+            "updated": "A Patron is updated with identifier {{ param }}",
+            "deleted": "A Patron is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Patron {{ id }}?"
+            },
+            "detail": {
+                "title": "Patron"
+            },
+            "patronStatus": "Patron Status",
+            "firstName": "First Name",
+            "middleName": "Middle Name",
+            "lastName": "Last Name",
+            "streetAddress": "Street Address",
+            "mailingAddress": "Mailing Address",
+            "email": "Email",
+            "phoneNum1": "Phone Num 1",
+            "phoneNum2": "Phone Num 2",
+            "phoneNum3": "Phone Num 3",
+            "login": "Login",
+            "rentalTransaction": "Rental Transaction",
+            "waitingList": "Waiting List"
+        }
+    }
+}

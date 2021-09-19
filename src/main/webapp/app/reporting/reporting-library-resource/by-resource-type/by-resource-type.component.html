@@ -1,0 +1,40 @@
+<div>
+    <h2><span jhiTranslate="lmsApp.byResourceType.home.title">Library Resources By Resource Type</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="byResourceTypes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="resourceTypeName"><span jhiTranslate="lmsApp.byResourceType.resourceTypeName">Resource Type</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let byResourceType of byResourceTypes ;trackBy: trackId">
+                <td><a [routerLink]="['/by-resource-type', byResourceType.id, 'view' ]">{{byResourceType.id}}</a></td>
+                <td>{{byResourceType.resourceTypeName}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/by-resource-type', byResourceType.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <br/>
+            <br/>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+        </table>
+    </div>
+</div>

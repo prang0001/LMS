@@ -1,0 +1,31 @@
+
+{
+    "lmsApp": {
+        "rentalTransaction" : {
+            "home": {
+                "title": "Rental Transactions",
+                "createLabel": "Create a new Rental Transaction",
+                "createOrEditLabel": "Create or edit a Rental Transaction"
+            },
+            "created": "A new Rental Transaction is created with identifier {{ param }}",
+            "updated": "A Rental Transaction is updated with identifier {{ param }}",
+            "deleted": "A Rental Transaction is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Rental Transaction {{ id }}?"
+            },
+            "detail": {
+                "title": "Rental Transaction"
+            },
+            "rentalPeriod": "Rental Period",
+            "rentalStartDate": "Rental Start Date",
+            "rentalDueDate": "Rental Due Date",
+            "extendRental": "Extend Rental",
+            "rentalFinalDueDate": "Rental Final Due Date",
+            "overdue": "Overdue",
+            "daysOverdue": "Days Overdue",
+            "finesOverdue": "Fines Overdue",
+            "libraryResource": "Library Resource",
+            "patron": "Patron"
+        }
+    }
+}

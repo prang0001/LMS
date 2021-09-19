@@ -1,0 +1,41 @@
+<div>
+    <h2><span jhiTranslate="lmsApp.byWaitingList.home.title">Library Resources By WaitingList</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="byWaitingLists">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="dateRequest"><span jhiTranslate="lmsApp.byWaitingList.dateRequest">Date Request</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span jhiTranslate="lmsApp.byWaitingList.libraryResource">Library Resource</span></th>
+                <th><span jhiTranslate="lmsApp.byWaitingList.patron">Patron</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let byWaitingList of byWaitingLists ;trackBy: trackId">
+                <td>{{byWaitingList.id}}</td>
+                <td>{{byWaitingList.dateRequest}}</td>
+                <td>
+                     <span *ngFor="let LibraryResource of byWaitingList.libraryResources;trackBy: trackId">
+                        <a [routerLink]="['/library-resource', LibraryResource?.id, 'view' ]" >{{LibraryResource?.resourceTitle}}</a>
+                     </span>
+                </td>
+                <td>
+                     <span *ngFor="let Patron of byWaitingList.patrons;trackBy: trackId">
+                        <a [routerLink]="['/patron', Patron?.id, 'view' ]" >{{Patron?.login}}</a>
+                     </span>
+                </td>
+            </tr>
+            </tbody>
+            <br/>
+            <br/>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+        </table>
+    </div>
+</div>

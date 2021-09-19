@@ -1,0 +1,5 @@
+id;patron_status;first_name;middle_name;last_name;street_address;mailing_address;email;phone_num_1;phone_num_2;phone_num_3;login
+1;Active;Veena;;Vangala;Waltham, MA;;vangav@brandeis.edu;1234567890;;;vangav
+2;Active;Chris;;Harris;Waltham, MA;;vangav@brandeis.edu;1234567890;;;chris
+3;Active;Pushpa;;Ranganthan;Waltham, MA;;vangav@brandeis.edu;1234567890;;;pushpa
+4;Active;Joshua;;Fawcett;Waltham, MA;;vangav@brandeis.edu;1234567890;;;joshua

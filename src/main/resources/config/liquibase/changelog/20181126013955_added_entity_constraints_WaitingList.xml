@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity WaitingList.
+    -->
+    <changeSet id="20181126013955-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="waiting_lists_id"
+                                 baseTableName="waiting_list_library_resource"
+                                 constraintName="fk_waiting_list_library_resource_waiting_lists_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="waiting_list"/>
+        <addForeignKeyConstraint baseColumnNames="library_resources_id"
+                                 baseTableName="waiting_list_library_resource"
+                                 constraintName="fk_waiting_list_library_resource_library_resources_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="library_resource"/>
+        
+        <addForeignKeyConstraint baseColumnNames="waiting_lists_id"
+                                 baseTableName="waiting_list_patron"
+                                 constraintName="fk_waiting_list_patron_waiting_lists_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="waiting_list"/>
+        <addForeignKeyConstraint baseColumnNames="patrons_id"
+                                 baseTableName="waiting_list_patron"
+                                 constraintName="fk_waiting_list_patron_patrons_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="patron"/>
+        
+    </changeSet>
+</databaseChangeLog>

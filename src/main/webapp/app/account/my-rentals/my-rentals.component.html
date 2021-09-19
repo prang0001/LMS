@@ -1,0 +1,31 @@
+<h3>---My Rentals---</h3>
+
+<table class="table table-striped">
+        <thead>
+        <tr>
+        <th>ID</th>
+        <th>Rental Period</th>
+        <th>Rental Start Date</th>
+        <th>Rental Due Date</th>
+        <th>Extend Rental</th>
+        <th>Rental Returned Date</th>
+        <th>Overdue</th>
+        <th>Days Overdue</th>
+        <th>Fines Overdue</th>
+        <th></th>
+        </tr>
+        </thead>
+        <tbody >
+                <tr *ngFor="let rentalTransaction of rentalTransactions ;trackBy: trackId">
+                <td>{{rentalTransaction.id}}</td>
+                <td>{{rentalTransaction.rentalPeriod}}</td>
+                <td>{{rentalTransaction.rentalStartDate}}</td>
+                <td>{{rentalTransaction.rentalDueDate}}</td>
+                <td>{{rentalTransaction.extendRental}}</td>
+                <td>{{rentalTransaction.rentalFinalDueDate}}</td>
+                <td>{{rentalTransaction.overdue}}</td>
+                <td>{{rentalTransaction.daysOverdue}}</td>
+                <td>{{rentalTransaction.finesOverdue}}</td>
+                </tr>
+        </tbody>
+</table>

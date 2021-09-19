@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-rental-transaction-heading" jhiTranslate="lmsApp.rentalTransaction.home.createOrEditLabel">Create or edit a Rental Transaction</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!rentalTransaction.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="rentalTransaction.id" readonly />
+                </div>
+               <!-- <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.rentalPeriod" for="field_rentalPeriod">Rental Period</label>
+                    <input type="number" class="form-control" name="rentalPeriod" id="field_rentalPeriod"
+                        [(ngModel)]="rentalTransaction.rentalPeriod" />
+                </div>-->
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.rentalStartDate" for="field_rentalStartDate">Rental Start Date</label>
+                    <div class="input-group">
+                        <input id="field_rentalStartDate" type="text" class="form-control" name="rentalStartDate" ngbDatepicker  #rentalStartDateDp="ngbDatepicker" [(ngModel)]="rentalTransaction.rentalStartDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="rentalStartDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.rentalDueDate" for="field_rentalDueDate">Rental Due Date</label>
+                    <div class="input-group">
+                        <input id="field_rentalDueDate" type="text" class="form-control" name="rentalDueDate" ngbDatepicker  #rentalDueDateDp="ngbDatepicker" [(ngModel)]="rentalTransaction.rentalDueDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="rentalDueDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>-->
+                <!--
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.extendRental" for="field_extendRental">Extend Rental</label>
+                    <input type="checkbox" class="form-control" name="extendRental" id="field_extendRental"
+                        [(ngModel)]="rentalTransaction.extendRental" />
+                </div>-->
+                <!--<div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.rentalFinalDueDate" for="field_rentalFinalDueDate">Rental Returned Date</label>
+                    <div class="input-group">
+                        <input id="field_rentalFinalDueDate" type="text" class="form-control" name="rentalFinalDueDate" ngbDatepicker  #rentalFinalDueDateDp="ngbDatepicker" [(ngModel)]="rentalTransaction.rentalFinalDueDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="rentalFinalDueDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>-->
+                <!--<div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.overdue" for="field_overdue">Overdue</label>
+                    <input type="checkbox" class="form-control" name="overdue" id="field_overdue"
+                        [(ngModel)]="rentalTransaction.overdue" />
+                </div>-->
+                <!--<div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.daysOverdue" for="field_daysOverdue">Days Overdue</label>
+                    <input type="number" class="form-control" name="daysOverdue" id="field_daysOverdue"
+                        [(ngModel)]="rentalTransaction.daysOverdue" />
+                </div>-->
+                <!--<div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.rentalTransaction.finesOverdue" for="field_finesOverdue">Fines Overdue</label>
+                    <input type="number" class="form-control" name="finesOverdue" id="field_finesOverdue"
+                        [(ngModel)]="rentalTransaction.finesOverdue" />
+                </div>-->
+
+                <div class="form-group">
+                    <label jhiTranslate="lmsApp.rentalTransaction.patron" for="field_patron">Patron</label>
+                    <select class="form-control" id="field_patron" multiple name="patron" [(ngModel)]="rentalTransaction.patrons">
+                        <option [ngValue]="getSelected(rentalTransaction.patrons, patronOption)" *ngFor="let patronOption of patrons; trackBy: trackPatronById">{{patronOption.login}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="lmsApp.rentalTransaction.libraryResource" for="field_libraryResource">Library Resource</label>
+                    <select class="form-control" id="field_libraryResource" multiple name="libraryResource" [(ngModel)]="rentalTransaction.libraryResources">
+                        <option [ngValue]="getSelected(rentalTransaction.libraryResources, libraryResourceOption)" *ngFor="let libraryResourceOption of libraryresources; trackBy: trackLibraryResourceById">{{libraryResourceOption.resourceTitle}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

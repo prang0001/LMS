@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity RentalTransaction.
+    -->
+    <changeSet id="20181126013954-1" author="jhipster">
+        <createTable tableName="rental_transaction">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rental_period" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="rental_start_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="rental_due_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="extend_rental" type="bit">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="rental_final_due_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="overdue" type="bit">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="days_overdue" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fines_overdue" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+        <createTable tableName="rental_transaction_library_resource">
+            <column name="library_resources_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rental_transactions_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="rental_transactions_id, library_resources_id" tableName="rental_transaction_library_resource"/>
+        
+        <createTable tableName="rental_transaction_patron">
+            <column name="patrons_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rental_transactions_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="rental_transactions_id, patrons_id" tableName="rental_transaction_patron"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

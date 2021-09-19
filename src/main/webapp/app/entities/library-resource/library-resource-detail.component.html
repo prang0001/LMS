@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="libraryResource">
+            <h2><span jhiTranslate="lmsApp.libraryResource.detail.title">Library Resource</span> {{libraryResource.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lmsApp.libraryResource.resourceTitle">Resource Title</span></dt>
+                <dd>
+                    <span>{{libraryResource.resourceTitle}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.libraryResource.resourceDescription">Resource Description</span></dt>
+                <dd>
+                    <span>{{libraryResource.resourceDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.libraryResource.callNumber">Call Number</span></dt>
+                <dd>
+                    <span>{{libraryResource.callNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.libraryResource.author">Author</span></dt>
+                <dd>
+                    <div *ngIf="libraryResource.author">
+                        <a [routerLink]="['/author', libraryResource.author?.id, 'view']">{{libraryResource.author?.authorName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.libraryResource.subject">Subject</span></dt>
+                <dd>
+                    <div *ngIf="libraryResource.subject">
+                        <a [routerLink]="['/subject', libraryResource.subject?.id, 'view']">{{libraryResource.subject?.subjectName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.libraryResource.resourceStatus">Resource Status</span></dt>
+                <dd>
+                    <div *ngIf="libraryResource.resourceStatus">
+                        <a [routerLink]="['/resource-status', libraryResource.resourceStatus?.id, 'view']">{{libraryResource.resourceStatus?.statusName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.libraryResource.resourceType">Resource Type</span></dt>
+                <dd>
+                    <div *ngIf="libraryResource.resourceType">
+                        <a [routerLink]="['/resource-type', libraryResource.resourceType?.id, 'view']">{{libraryResource.resourceType?.resourceTypeName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/library-resource', libraryResource.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

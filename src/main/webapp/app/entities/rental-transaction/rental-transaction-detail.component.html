@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="rentalTransaction">
+            <h2><span jhiTranslate="lmsApp.rentalTransaction.detail.title">Rental Transaction</span> {{rentalTransaction.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.rentalPeriod">Rental Period</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.rentalPeriod}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.rentalStartDate">Rental Start Date</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.rentalStartDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.rentalDueDate">Rental Due Date</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.rentalDueDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.extendRental">Extend Rental</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.extendRental}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.rentalFinalDueDate">Rental Final Due Date</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.rentalFinalDueDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.overdue">Overdue</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.overdue}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.daysOverdue">Days Overdue</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.daysOverdue}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.finesOverdue">Fines Overdue</span></dt>
+                <dd>
+                    <span>{{rentalTransaction.finesOverdue}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.libraryResource">Library Resource</span></dt>
+                <dd>
+                    <span *ngFor="let libraryResource of rentalTransaction.libraryResources; let last = last">
+                        <a [routerLink]="['/library-resource', libraryResource?.id, 'view' ]">{{libraryResource.resourceTitle}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.rentalTransaction.patron">Patron</span></dt>
+                <dd>
+                    <span *ngFor="let patron of rentalTransaction.patrons; let last = last">
+                        <a [routerLink]="['/patron', patron?.id, 'view' ]">{{patron.login}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/rental-transaction', rentalTransaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

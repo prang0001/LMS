@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181011230351_added_entity_LibraryResource.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181011230352_added_entity_Author.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181011230353_added_entity_Subject.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181020162814_added_entity_Patron.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181126013952_added_entity_ResourceStatus.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181126013953_added_entity_ResourceType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181126013954_added_entity_RentalTransaction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181126013955_added_entity_WaitingList.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20181011230351_added_entity_constraints_LibraryResource.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181126013954_added_entity_constraints_RentalTransaction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181126013955_added_entity_constraints_WaitingList.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

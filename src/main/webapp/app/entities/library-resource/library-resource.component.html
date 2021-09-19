@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="lmsApp.libraryResource.home.title">Library Resources</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-library-resource" [routerLink]="['/library-resource/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="lmsApp.libraryResource.home.createLabel">
+            Create new Library Resource
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="libraryResources">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            <th jhiSortBy="resourceTitle"><span jhiTranslate="lmsApp.libraryResource.resourceTitle">Resource Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resourceDescription"><span jhiTranslate="lmsApp.libraryResource.resourceDescription">Resource Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="callNumber"><span jhiTranslate="lmsApp.libraryResource.callNumber">Call Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="author.authorName"><span jhiTranslate="lmsApp.libraryResource.author">Author</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="subject.subjectName"><span jhiTranslate="lmsApp.libraryResource.subject">Subject</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resourceStatus.statusName"><span jhiTranslate="lmsApp.libraryResource.resourceStatus">Resource Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resourceType.resourceTypeName"><span jhiTranslate="lmsApp.libraryResource.resourceType">Resource Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let libraryResource of libraryResources ;trackBy: trackId">
+                <td><a [routerLink]="['/library-resource', libraryResource.id, 'view' ]">{{libraryResource.id}}</a></td>
+                <td>
+                    <div *ngIf="libraryResource.resourceStatus?.statusName!='Rented'">
+                    <jhi-reserve-resource [resourceToReserve]="libraryResource"></jhi-reserve-resource>
+                    </div>
+                    <div *ngIf="libraryResource.resourceStatus?.statusName=='Rented'">
+                            <button type="submit" class="btn btn-info btn-sm" style="background-color: #ffdd1a; color: #000000;">
+                                    <span class="d-none d-md-inline">+ WAITING LIST</span>
+                            </button>
+                    </div>
+                </td>
+                <td>{{libraryResource.resourceTitle}}</td>
+                <td>{{libraryResource.resourceDescription}}</td>
+                <td>{{libraryResource.callNumber}}</td>
+                <td>
+                    <div *ngIf="libraryResource.author">
+                        <a [routerLink]="['../author', libraryResource.author?.id, 'view' ]" >{{libraryResource.author?.authorName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="libraryResource.subject">
+                        <a [routerLink]="['../subject', libraryResource.subject?.id, 'view' ]" >{{libraryResource.subject?.subjectName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="libraryResource.resourceStatus">
+                        <a [routerLink]="['../resource-status', libraryResource.resourceStatus?.id, 'view' ]" >{{libraryResource.resourceStatus?.statusName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="libraryResource.resourceType">
+                        <a [routerLink]="['../resource-type', libraryResource.resourceType?.id, 'view' ]" >{{libraryResource.resourceType?.resourceTypeName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/library-resource', libraryResource.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit" *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                                [routerLink]="['/library-resource', libraryResource.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit" 
+                                [routerLink]="['/', { outlets: { popup: 'library-resource/'+ libraryResource.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

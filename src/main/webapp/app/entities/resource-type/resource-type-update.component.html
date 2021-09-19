@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-resource-type-heading" jhiTranslate="lmsApp.resourceType.home.createOrEditLabel">Create or edit a Resource Type</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!resourceType.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="resourceType.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.resourceType.resourceTypeName" for="field_resourceTypeName">Resource Type Name</label>
+                    <input type="text" class="form-control" name="resourceTypeName" id="field_resourceTypeName"
+                        [(ngModel)]="resourceType.resourceTypeName" required/>
+                    <div [hidden]="!(editForm.controls.resourceTypeName?.dirty && editForm.controls.resourceTypeName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.resourceTypeName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.resourceType.rentalDuration" for="field_rentalDuration">Rental Duration</label>
+                    <input type="number" class="form-control" name="rentalDuration" id="field_rentalDuration"
+                        [(ngModel)]="resourceType.rentalDuration" required/>
+                    <div [hidden]="!(editForm.controls.rentalDuration?.dirty && editForm.controls.rentalDuration?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.rentalDuration?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.rentalDuration?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.resourceType.overdueCharge" for="field_overdueCharge">Overdue Charge</label>
+                    <input type="number" class="form-control" name="overdueCharge" id="field_overdueCharge"
+                        [(ngModel)]="resourceType.overdueCharge" required/>
+                    <div [hidden]="!(editForm.controls.overdueCharge?.dirty && editForm.controls.overdueCharge?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.overdueCharge?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.overdueCharge?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

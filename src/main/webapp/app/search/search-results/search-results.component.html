@@ -1,0 +1,80 @@
+<h3>---Search Results---</h3>
+<div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th>Reserve</th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            <th jhiSortBy="resourceId">Resource Id <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resourceType">Resource Type <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resourceTitle">Resource Title<fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resourceDescription">Resource Description <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="callNumber">Call Number<fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="author">Author <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+           <!-- <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">-->
+            
+            <tr *ngFor="let searchResults of searchResponse.searchResults">
+               <td>
+                    <!--<jhi-reserve-resource [resourceToReserve]="libraryResource"></jhi-reserve-resource>-->
+                    <button type="submit" (click)="reserveResource(searchResults.id)" class="btn btn-info btn-sm">
+<span class="d-none d-md-inline">RESERVE</span>
+</button>
+                </td>	
+               <td><a [routerLink]="['/library-resource', searchResults.id, 'view' ]">{{searchResults.id}}</a></td>
+                
+                <td>
+					{{searchResults.id}}
+                </td>
+                <td>{{searchResults.resourceType}}</td>
+                <td>{{searchResults.title}}</td>
+                <td>{{searchResults.resourceDescription}}</td>
+                <td>{{searchResults.callNumber}}</td>
+                <td>{{searchResults.author}}</td>
+                <!--<td>
+                    <div *ngIf="libraryResource.authorId">
+                        <a [routerLink]="['../author', libraryResource.authorId?.id, 'view' ]" >{{libraryResource.authorId?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="libraryResource.subjectId">
+                        <a [routerLink]="['../subject', libraryResource.subjectId?.id, 'view' ]" >{{libraryResource.subjectId?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/library-resource', libraryResource.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/library-resource', libraryResource.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'library-resource/'+ libraryResource.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>-->
+
+            
+                
+
+                
+            </tr>
+            <!-- </tbody>-->
+        </table>
+    </div>
+

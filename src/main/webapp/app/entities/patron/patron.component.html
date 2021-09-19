@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="lmsApp.patron.home.title">Patrons</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-patron" [routerLink]="['/patron/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="lmsApp.patron.home.createLabel">
+            Create new Patron
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="patrons">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="patronStatus"><span jhiTranslate="lmsApp.patron.patronStatus">Patron Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="lmsApp.patron.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="middleName"><span jhiTranslate="lmsApp.patron.middleName">Middle Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="lmsApp.patron.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="streetAddress"><span jhiTranslate="lmsApp.patron.streetAddress">Street Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mailingAddress"><span jhiTranslate="lmsApp.patron.mailingAddress">Mailing Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="lmsApp.patron.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phoneNum1"><span jhiTranslate="lmsApp.patron.phoneNum1">Phone Num 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phoneNum2"><span jhiTranslate="lmsApp.patron.phoneNum2">Phone Num 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phoneNum3"><span jhiTranslate="lmsApp.patron.phoneNum3">Phone Num 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="login"><span jhiTranslate="lmsApp.patron.login">Login</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let patron of patrons ;trackBy: trackId">
+                <td><a [routerLink]="['/patron', patron.id, 'view' ]">{{patron.id}}</a></td>
+                <td>{{patron.patronStatus}}</td>
+                <td>{{patron.firstName}}</td>
+                <td>{{patron.middleName}}</td>
+                <td>{{patron.lastName}}</td>
+                <td>{{patron.streetAddress}}</td>
+                <td>{{patron.mailingAddress}}</td>
+                <td>{{patron.email}}</td>
+                <td>{{patron.phoneNum1}}</td>
+                <td>{{patron.phoneNum2}}</td>
+                <td>{{patron.phoneNum3}}</td>
+                <td>{{patron.login}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/patron', patron.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/patron', patron.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'patron/'+ patron.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

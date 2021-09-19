@@ -1,0 +1,65 @@
+<div *ngIf="byRentalTransactions" >
+    <h2><span jhiTranslate="lmsApp.byRentalTransaction.detail.title">Library Resource by Status: </span>
+        <div ngFor="let byRentalTransaction of byRentalTransactions;trackBy: trackId">
+            {{byRentalTransaction.id}} ({{byRentalTransaction.length}})
+        </div>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="resourceId"><span jhiTranslate="lmsApp.byRentalTransaction.resourceId">Resource Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="resourceType"><span jhiTranslate="lmsApp.byRentalTransaction.resourceType">Resource Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="resourceTitle"><span jhiTranslate="lmsApp.byRentalTransaction.resourceTitle">Resource Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="resourceDescription"><span jhiTranslate="lmsApp.byRentalTransaction.resourceDescription">Resource Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="callNumber"><span jhiTranslate="lmsApp.byRentalTransaction.callNumber">Call Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="authorName.id"><span jhiTranslate="lmsApp.byRentalTransaction.authorName">Author Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="subjectName.id"><span jhiTranslate="lmsApp.byRentalTransaction.subjectName">Subject Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let libraryResource of byRentalTransaction;trackBy: trackId">
+                <td><a [routerLink]="['/library-resource', libraryResource.id, 'view' ]">{{libraryResource.id}}</a></td>
+                <td>
+                    <div *ngIf="libraryResource.resourceType">
+                        <a [routerLink]="['/resource-type', libraryResource.resourceType?.id, 'view' ]" >{{libraryResource.resourceType?.resourceTypeName}}</a>
+                    </div>
+                </td>
+                <td>{{libraryResource.resourceTitle}}</td>
+                <td>{{libraryResource.resourceDescription}}</td>
+                <td>{{libraryResource.callNumber}}</td>
+                <td>
+                    <div *ngIf="libraryResource.author">
+                        <a [routerLink]="['/author', libraryResource.author?.id, 'view' ]" >{{libraryResource.author?.authorName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="libraryResource.subject">
+                        <a [routerLink]="['/subject', libraryResource.subject?.id, 'view' ]" >{{libraryResource.subject?.subjectName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/library-resource', libraryResource.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <br/>
+            <br/>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+        </table>
+    </div>
+</div>

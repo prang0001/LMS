@@ -1,0 +1,30 @@
+
+{
+    "lmsApp": {
+        "libraryResource" : {
+            "home": {
+                "title": "Library Resources",
+                "createLabel": "Create a new Library Resource",
+                "createOrEditLabel": "Create or edit a Library Resource"
+            },
+            "created": "A new Library Resource is created with identifier {{ param }}",
+            "updated": "A Library Resource is updated with identifier {{ param }}",
+            "deleted": "A Library Resource is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Library Resource {{ id }}?"
+            },
+            "detail": {
+                "title": "Library Resource"
+            },
+            "resourceTitle": "Resource Title",
+            "resourceDescription": "Resource Description",
+            "callNumber": "Call Number",
+            "author": "Author",
+            "subject": "Subject",
+            "resourceStatus": "Resource Status",
+            "resourceType": "Resource Type",
+            "rentalTransaction": "Rental Transaction",
+            "waitingList": "Waiting List"
+        }
+    }
+}

@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="patron">
+            <h2><span jhiTranslate="lmsApp.patron.detail.title">Patron</span> {{patron.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lmsApp.patron.patronStatus">Patron Status</span></dt>
+                <dd>
+                    <span>{{patron.patronStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{patron.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.middleName">Middle Name</span></dt>
+                <dd>
+                    <span>{{patron.middleName}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{patron.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.streetAddress">Street Address</span></dt>
+                <dd>
+                    <span>{{patron.streetAddress}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.mailingAddress">Mailing Address</span></dt>
+                <dd>
+                    <span>{{patron.mailingAddress}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.email">Email</span></dt>
+                <dd>
+                    <span>{{patron.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.phoneNum1">Phone Num 1</span></dt>
+                <dd>
+                    <span>{{patron.phoneNum1}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.phoneNum2">Phone Num 2</span></dt>
+                <dd>
+                    <span>{{patron.phoneNum2}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.phoneNum3">Phone Num 3</span></dt>
+                <dd>
+                    <span>{{patron.phoneNum3}}</span>
+                </dd>
+                <dt><span jhiTranslate="lmsApp.patron.login">Login</span></dt>
+                <dd>
+                    <span>{{patron.login}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/patron', patron.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-patron-heading" jhiTranslate="lmsApp.patron.home.createOrEditLabel">Create or edit a Patron</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!patron.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="patron.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.patronStatus" for="field_patronStatus">Patron Status</label>
+                    <!--<input type="text" class="form-control" name="patronStatus" id="field_patronStatus"
+                        [(ngModel)]="patron.patronStatus" required/>-->
+                        <select class="form-control" id="field_patronStatus" name="patronStatus" [(ngModel)]="patron.patronStatus">
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="patron.patronStatus" *ngFor="let p of statuses;">{{p}}</option>
+                        </select>
+                    <div [hidden]="!(editForm.controls.patronStatus?.dirty && editForm.controls.patronStatus?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.patronStatus?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.firstName" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="patron.firstName" required/>
+                    <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.middleName" for="field_middleName">Middle Name</label>
+                    <input type="text" class="form-control" name="middleName" id="field_middleName"
+                        [(ngModel)]="patron.middleName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.lastName" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="patron.lastName" required/>
+                    <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.streetAddress" for="field_streetAddress">Street Address</label>
+                    <input type="text" class="form-control" name="streetAddress" id="field_streetAddress"
+                        [(ngModel)]="patron.streetAddress" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.mailingAddress" for="field_mailingAddress">Mailing Address</label>
+                    <input type="text" class="form-control" name="mailingAddress" id="field_mailingAddress"
+                        [(ngModel)]="patron.mailingAddress" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="patron.email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.phoneNum1" for="field_phoneNum1">Phone Num 1</label>
+                    <input type="text" class="form-control" name="phoneNum1" id="field_phoneNum1"
+                        [(ngModel)]="patron.phoneNum1" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.phoneNum2" for="field_phoneNum2">Phone Num 2</label>
+                    <input type="text" class="form-control" name="phoneNum2" id="field_phoneNum2"
+                        [(ngModel)]="patron.phoneNum2" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.phoneNum3" for="field_phoneNum3">Phone Num 3</label>
+                    <input type="text" class="form-control" name="phoneNum3" id="field_phoneNum3"
+                        [(ngModel)]="patron.phoneNum3" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lmsApp.patron.login" for="field_login">Login</label>
+                    <input type="text" class="form-control" name="login" id="field_login"
+                        [(ngModel)]="patron.login" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

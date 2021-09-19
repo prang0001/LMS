@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity RentalTransaction.
+    -->
+    <changeSet id="20181126013954-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="rental_transactions_id"
+                                 baseTableName="rental_transaction_library_resource"
+                                 constraintName="fk_rental_transaction_library_resource_rental_transactions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rental_transaction"/>
+        <addForeignKeyConstraint baseColumnNames="library_resources_id"
+                                 baseTableName="rental_transaction_library_resource"
+                                 constraintName="fk_rental_transaction_library_resource_library_resources_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="library_resource"/>
+        
+        <addForeignKeyConstraint baseColumnNames="rental_transactions_id"
+                                 baseTableName="rental_transaction_patron"
+                                 constraintName="fk_rental_transaction_patron_rental_transactions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rental_transaction"/>
+        <addForeignKeyConstraint baseColumnNames="patrons_id"
+                                 baseTableName="rental_transaction_patron"
+                                 constraintName="fk_rental_transaction_patron_patrons_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="patron"/>
+        
+    </changeSet>
+</databaseChangeLog>
